@@ -18,7 +18,8 @@ class SecondViewController: UIViewController, SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
     func viewPullingLessMaxDistance() { }
-    func viewPullingOverMaxDistance() { }
+    func viewPullingWillEnd() { }
+    func viewPullingDidEnd() { }
     
     //MARK: View Life Cycle
     override func viewDidLoad() {

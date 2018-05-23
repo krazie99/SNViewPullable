@@ -20,7 +20,8 @@ protocol SNViewPullable : class  {
     func viewPullingBegin()
     func viewPullingMoved()
     func viewPullingLessMaxDistance()
-    func viewPullingOverMaxDistance()
+    func viewPullingWillEnd()
+    func viewPullingDidEnd()
 }
 
 //MARK:
@@ -28,7 +29,8 @@ extension SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
     func viewPullingLessMaxDistance() { }
-    func viewPullingOverMaxDistance() { }
+    func viewPullingWillEnd() { }
+    func viewPullingDidEnd() { }
 }
 
 //MARK: Pull Gestures
@@ -65,8 +67,9 @@ extension SNViewPullable where Self: UIViewController  {
                 }
                 self.viewPullingLessMaxDistance()
             } else {
+                self.viewPullingWillEnd()
                 self.dismiss(animated: true, completion: nil)
-                self.viewPullingOverMaxDistance()
+                self.viewPullingDidEnd()
             }
         default: break
             
