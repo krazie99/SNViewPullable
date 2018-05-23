@@ -10,6 +10,7 @@ import UIKit
 
 protocol SNViewPullable : class  {
     var pullableOriginPoint: CGPoint { get set }
+    var pullableOriginSafeAreaInsets: UIEdgeInsets { get set }
     var pullableMaxDistance: CGFloat { get }
     
     var viewAnimationDuration: TimeInterval { get }
@@ -49,8 +50,11 @@ extension SNViewPullable where Self: UIViewController  {
         switch gesture.state {
         case .began:
             self.pullableOriginPoint = translation
+            self.pullableOriginSafeAreaInsets = self.view.safeAreaInsets
             self.viewPullingBegin()
         case .changed:
+            self.additionalSafeAreaInsets = pullableOriginSafeAreaInsets
+            
             pulledLength = translation.y - pullableOriginPoint.y
             if pulledLength < 0 {
                 pulledLength = 0
@@ -59,6 +63,8 @@ extension SNViewPullable where Self: UIViewController  {
             self.view.frame = targetFrame
             self.viewPullingMoved()
         case .ended, .cancelled:
+            self.additionalSafeAreaInsets = UIEdgeInsets.zero
+            
             pulledLength = translation.y - pullableOriginPoint.y
             if pulledLength < pullableMaxDistance {
                 targetFrame.origin.y = 0
