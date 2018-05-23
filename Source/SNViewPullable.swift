@@ -44,7 +44,7 @@ extension SNViewPullable where Self: UIViewController  {
     
     func handleViewPullablePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: self.view)
-        var pulledLength : CGFloat = 0
+        var pulledDistance : CGFloat = 0
         var targetFrame = self.view.frame
         
         switch gesture.state {
@@ -55,18 +55,18 @@ extension SNViewPullable where Self: UIViewController  {
         case .changed:
             self.additionalSafeAreaInsets = pullableOriginSafeAreaInsets
             
-            pulledLength = translation.y - pullableOriginPoint.y
-            if pulledLength < 0 {
-                pulledLength = 0
+            pulledDistance = translation.y - pullableOriginPoint.y
+            if pulledDistance < 0 {
+                pulledDistance = 0
             }
-            targetFrame.origin.y = pulledLength
+            targetFrame.origin.y = pulledDistance
             self.view.frame = targetFrame
             self.viewPullingMoved()
         case .ended, .cancelled:
             self.additionalSafeAreaInsets = UIEdgeInsets.zero
             
-            pulledLength = translation.y - pullableOriginPoint.y
-            if pulledLength < pullableMaxDistance {
+            pulledDistance = translation.y - pullableOriginPoint.y
+            if pulledDistance < pullableMaxDistance {
                 targetFrame.origin.y = 0
                 UIView.animate(withDuration: viewAnimationDuration) {
                     self.view.frame = targetFrame
