@@ -50,10 +50,14 @@ extension SNViewPullable where Self: UIViewController  {
         switch gesture.state {
         case .began:
             self.pullableOriginPoint = translation
-            self.pullableOriginSafeAreaInsets = self.view.safeAreaInsets
+            if #available(iOS 11.0, *) {
+                self.pullableOriginSafeAreaInsets = self.view.safeAreaInsets
+            }
             self.viewPullingBegin()
         case .changed:
-            self.additionalSafeAreaInsets = pullableOriginSafeAreaInsets
+            if #available(iOS 11.0, *) {
+                self.additionalSafeAreaInsets = pullableOriginSafeAreaInsets
+            }
             
             pulledDistance = translation.y - pullableOriginPoint.y
             if pulledDistance < 0 {
@@ -63,10 +67,11 @@ extension SNViewPullable where Self: UIViewController  {
             self.view.frame = targetFrame
             self.viewPullingMoved()
         case .ended, .cancelled:
-            self.additionalSafeAreaInsets = UIEdgeInsets.zero
-            
             pulledDistance = translation.y - pullableOriginPoint.y
             if pulledDistance < pullableMaxDistance {
+                if #available(iOS 11.0, *) {
+                    self.additionalSafeAreaInsets = UIEdgeInsets.zero
+                }
                 targetFrame.origin.y = 0
                 UIView.animate(withDuration: viewAnimationDuration) {
                     self.view.frame = targetFrame
