@@ -10,7 +10,7 @@ import UIKit
 
 protocol SNViewPullable : class  {
     var pullableOriginPoint: CGPoint { get set }
-    var pullableMaxLength: CGFloat { get }
+    var pullableMaxDistance: CGFloat { get }
     
     var viewAnimationDuration: TimeInterval { get }
     
@@ -19,16 +19,16 @@ protocol SNViewPullable : class  {
     
     func viewPullingBegin()
     func viewPullingMoved()
-    func viewPullingLessMaxLength()
-    func viewPullingOverMaxLength()
+    func viewPullingLessMaxDistance()
+    func viewPullingOverMaxDistance()
 }
 
 //MARK:
 extension SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
-    func viewPullingLessMaxLength() { }
-    func viewPullingOverMaxLength() { }
+    func viewPullingLessMaxDistance() { }
+    func viewPullingOverMaxDistance() { }
 }
 
 //MARK: Pull Gestures
@@ -58,15 +58,15 @@ extension SNViewPullable where Self: UIViewController  {
             self.viewPullingMoved()
         case .ended, .cancelled:
             pulledLength = translation.y - pullableOriginPoint.y
-            if pulledLength < pullableMaxLength {
+            if pulledLength < pullableMaxDistance {
                 targetFrame.origin.y = 0
                 UIView.animate(withDuration: viewAnimationDuration) {
                     self.view.frame = targetFrame
                 }
-                self.viewPullingLessMaxLength()
+                self.viewPullingLessMaxDistance()
             } else {
                 self.dismiss(animated: true, completion: nil)
-                self.viewPullingOverMaxLength()
+                self.viewPullingOverMaxDistance()
             }
         default: break
             
