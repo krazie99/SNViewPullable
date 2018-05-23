@@ -17,7 +17,7 @@ class SecondViewController: UIViewController, SNViewPullable {
     
     func viewPullingBegin() { }
     func viewPullingMoved() { }
-    func viewPullingLessMaxDistance() { }
+    func viewPullingCancel() { }
     func viewPullingWillEnd() { }
     func viewPullingDidEnd() { }
     

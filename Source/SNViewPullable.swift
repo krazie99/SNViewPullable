@@ -19,7 +19,7 @@ protocol SNViewPullable : class  {
     
     func viewPullingBegin()
     func viewPullingMoved()
-    func viewPullingLessMaxDistance()
+    func viewPullingCancel()
     func viewPullingWillEnd()
     func viewPullingDidEnd()
 }
@@ -28,7 +28,7 @@ protocol SNViewPullable : class  {
 extension SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
-    func viewPullingLessMaxDistance() { }
+    func viewPullingCancel() { }
     func viewPullingWillEnd() { }
     func viewPullingDidEnd() { }
 }
@@ -65,7 +65,7 @@ extension SNViewPullable where Self: UIViewController  {
                 UIView.animate(withDuration: viewAnimationDuration) {
                     self.view.frame = targetFrame
                 }
-                self.viewPullingLessMaxDistance()
+                self.viewPullingCancel()
             } else {
                 self.viewPullingWillEnd()
                 self.dismiss(animated: true, completion: nil)
