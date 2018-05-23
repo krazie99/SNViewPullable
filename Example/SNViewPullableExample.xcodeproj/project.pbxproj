@@ -14,8 +14,8 @@
 		5B10D2F820B5550D008C07E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B10D2F620B5550D008C07E2 /* LaunchScreen.storyboard */; };
 		5B10D30320B5550D008C07E2 /* SNViewPullableExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10D30220B5550D008C07E2 /* SNViewPullableExampleTests.swift */; };
 		5B10D30E20B5550D008C07E2 /* SNViewPullableExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10D30D20B5550D008C07E2 /* SNViewPullableExampleUITests.swift */; };
-		5B10D31D20B55525008C07E2 /* SNViewPullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10D31C20B55525008C07E2 /* SNViewPullable.swift */; };
 		5B10D31F20B55596008C07E2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10D31E20B55596008C07E2 /* SecondViewController.swift */; };
+		5B10D32120B56155008C07E2 /* SNViewPullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10D32020B56155008C07E2 /* SNViewPullable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +49,8 @@
 		5B10D30920B5550D008C07E2 /* SNViewPullableExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SNViewPullableExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B10D30D20B5550D008C07E2 /* SNViewPullableExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNViewPullableExampleUITests.swift; sourceTree = "<group>"; };
 		5B10D30F20B5550D008C07E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B10D31C20B55525008C07E2 /* SNViewPullable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNViewPullable.swift; path = ../../../../Source/SNViewPullable.swift; sourceTree = "<group>"; };
 		5B10D31E20B55596008C07E2 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		5B10D32020B56155008C07E2 /* SNViewPullable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SNViewPullable.swift; path = ../../../Source/SNViewPullable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 		5B10D31B20B55519008C07E2 /* SNViewPullable */ = {
 			isa = PBXGroup;
 			children = (
-				5B10D31C20B55525008C07E2 /* SNViewPullable.swift */,
+				5B10D32020B56155008C07E2 /* SNViewPullable.swift */,
 			);
 			path = SNViewPullable;
 			sourceTree = "<group>";
@@ -270,9 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B10D32120B56155008C07E2 /* SNViewPullable.swift in Sources */,
 				5B10D31F20B55596008C07E2 /* SecondViewController.swift in Sources */,
 				5B10D2F020B5550C008C07E2 /* ViewController.swift in Sources */,
-				5B10D31D20B55525008C07E2 /* SNViewPullable.swift in Sources */,
 				5B10D2EE20B5550C008C07E2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

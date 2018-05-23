@@ -13,6 +13,7 @@ class SecondViewController: UIViewController, SNViewPullable {
     //MARK: SNViewPullable
     var pullableOriginPoint: CGPoint = CGPoint.zero
     var pullableMaxLength: CGFloat = 200
+    var viewAnimationDuration: TimeInterval = 0.3
     
     func viewPullingBegin() {
     }

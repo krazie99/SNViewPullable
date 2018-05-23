@@ -12,6 +12,8 @@ protocol SNViewPullable : class  {
     var pullableOriginPoint: CGPoint { get set }
     var pullableMaxLength: CGFloat { get }
     
+    var viewAnimationDuration: TimeInterval { get }
+    
     func addViewPullablePanGesture()
     func handleViewPullablePanGesture(_ gesture: UIPanGestureRecognizer)
     
@@ -58,8 +60,8 @@ extension SNViewPullable where Self: UIViewController  {
             pulledLength = translation.y - pullableOriginPoint.y
             if pulledLength < pullableMaxLength {
                 targetFrame.origin.y = 0
-                UIView.animate(withDuration: 0.3) { [weak self] in
-                    self?.view.frame = targetFrame
+                UIView.animate(withDuration: viewAnimationDuration) {
+                    self.view.frame = targetFrame
                 }
                 self.viewPullingLessMaxLength()
             } else {
