@@ -10,6 +10,7 @@ import UIKit
 
 protocol SNViewPullable : class  {
     var pullableOriginPoint: CGPoint { get set }
+    var pullableOriginSafeAreaInsets: UIEdgeInsets { get set }
     var pullableMaxDistance: CGFloat { get }
     
     var viewAnimationDuration: TimeInterval { get }
@@ -19,16 +20,18 @@ protocol SNViewPullable : class  {
     
     func viewPullingBegin()
     func viewPullingMoved()
-    func viewPullingLessMaxDistance()
-    func viewPullingOverMaxDistance()
+    func viewPullingCancel()
+    func viewPullingWillEnd()
+    func viewPullingDidEnd()
 }
 
 //MARK:
 extension SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
-    func viewPullingLessMaxDistance() { }
-    func viewPullingOverMaxDistance() { }
+    func viewPullingCancel() { }
+    func viewPullingWillEnd() { }
+    func viewPullingDidEnd() { }
 }
 
 //MARK: Pull Gestures
@@ -41,32 +44,43 @@ extension SNViewPullable where Self: UIViewController  {
     
     func handleViewPullablePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: self.view)
-        var pulledLength : CGFloat = 0
+        var pulledDistance : CGFloat = 0
         var targetFrame = self.view.frame
         
         switch gesture.state {
         case .began:
             self.pullableOriginPoint = translation
+            if #available(iOS 11.0, *) {
+                self.pullableOriginSafeAreaInsets = self.view.safeAreaInsets
+            }
             self.viewPullingBegin()
         case .changed:
-            pulledLength = translation.y - pullableOriginPoint.y
-            if pulledLength < 0 {
-                pulledLength = 0
+            if #available(iOS 11.0, *) {
+                self.additionalSafeAreaInsets = pullableOriginSafeAreaInsets
             }
-            targetFrame.origin.y = pulledLength
+            
+            pulledDistance = translation.y - pullableOriginPoint.y
+            if pulledDistance < 0 {
+                pulledDistance = 0
+            }
+            targetFrame.origin.y = pulledDistance
             self.view.frame = targetFrame
             self.viewPullingMoved()
         case .ended, .cancelled:
-            pulledLength = translation.y - pullableOriginPoint.y
-            if pulledLength < pullableMaxDistance {
+            pulledDistance = translation.y - pullableOriginPoint.y
+            if pulledDistance < pullableMaxDistance {
+                if #available(iOS 11.0, *) {
+                    self.additionalSafeAreaInsets = UIEdgeInsets.zero
+                }
                 targetFrame.origin.y = 0
                 UIView.animate(withDuration: viewAnimationDuration) {
                     self.view.frame = targetFrame
                 }
-                self.viewPullingLessMaxDistance()
+                self.viewPullingCancel()
             } else {
+                self.viewPullingWillEnd()
                 self.dismiss(animated: true, completion: nil)
-                self.viewPullingOverMaxDistance()
+                self.viewPullingDidEnd()
             }
         default: break
             

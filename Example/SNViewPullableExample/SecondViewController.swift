@@ -12,13 +12,15 @@ class SecondViewController: UIViewController, SNViewPullable {
    
     //MARK: SNViewPullable
     var pullableOriginPoint: CGPoint = CGPoint.zero
+    var pullableOriginSafeAreaInsets: UIEdgeInsets = UIEdgeInsets.zero
     var pullableMaxDistance: CGFloat = 200
     var viewAnimationDuration: TimeInterval = 0.3
     
     func viewPullingBegin() { }
     func viewPullingMoved() { }
-    func viewPullingLessMaxDistance() { }
-    func viewPullingOverMaxDistance() { }
+    func viewPullingCancel() { }
+    func viewPullingWillEnd() { }
+    func viewPullingDidEnd() { }
     
     //MARK: View Life Cycle
     override func viewDidLoad() {
