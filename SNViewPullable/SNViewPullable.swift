@@ -43,7 +43,7 @@ public protocol SNViewPullable : class  {
     func viewPullingDidEnd()
 }
 
-//MARK:
+//MARK: stub
 public extension SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
