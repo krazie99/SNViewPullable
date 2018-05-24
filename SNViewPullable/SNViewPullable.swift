@@ -69,7 +69,12 @@ public extension SNViewPullable where Self: UIViewController  {
         case .began:
             self.pullableOriginPoint = translation
             if #available(iOS 11.0, *) {
-                self.pullableOriginSafeAreaInsets = self.view.safeAreaInsets
+                let currentSafeAreaInsets:UIEdgeInsets = self.view.safeAreaInsets
+                if UIDevice.current.orientation.isLandscape {
+                    self.pullableOriginSafeAreaInsets = UIEdgeInsets.zero
+                } else {
+                    self.pullableOriginSafeAreaInsets = UIEdgeInsetsMake(currentSafeAreaInsets.top, 0, currentSafeAreaInsets.bottom, 0)
+                }
             }
             self.viewPullingBegin()
         case .changed:
