@@ -26,7 +26,7 @@
 
 import UIKit
 
-protocol SNViewPullable : class  {
+public protocol SNViewPullable : class  {
     var pullableOriginPoint: CGPoint { get set }
     var pullableOriginSafeAreaInsets: UIEdgeInsets { get set }
     var pullableMaxDistance: CGFloat { get }
@@ -44,7 +44,7 @@ protocol SNViewPullable : class  {
 }
 
 //MARK:
-extension SNViewPullable {
+public extension SNViewPullable {
     func viewPullingBegin() { }
     func viewPullingMoved() { }
     func viewPullingCancel() { }
@@ -53,7 +53,7 @@ extension SNViewPullable {
 }
 
 //MARK: Pull Gestures
-extension SNViewPullable where Self: UIViewController  {
+public extension SNViewPullable where Self: UIViewController  {
     
     func addViewPullablePanGesture() {
         let gesture = UIPanGestureRecognizer(target: self, action: .swipePangesture)

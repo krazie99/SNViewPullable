@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SNViewPullable
 
 class SecondViewController: UIViewController, SNViewPullable {
    
