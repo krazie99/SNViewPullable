@@ -1,0 +1,6 @@
+framework module Pods_SNViewPullable_Example {
+  umbrella header "Pods-SNViewPullable_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

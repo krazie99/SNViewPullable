@@ -1,0 +1,10 @@
+framework module SNViewPullable {
+  umbrella header "SNViewPullable-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module SNViewPullable.__Swift {
+    exclude header "SNViewPullable-Swift.h"
+}

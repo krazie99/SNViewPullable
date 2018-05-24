@@ -1,0 +1,22 @@
+{
+  "name": "SNViewPullable",
+  "version": "0.1.0",
+  "summary": "A short description of SNViewPullable.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/sean.ho/SNViewPullable",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "sean.ho": "sean.ho@kakaocorp.com"
+  },
+  "source": {
+    "git": "https://github.com/sean.ho/SNViewPullable.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SNViewPullable/Classes/**/*"
+}

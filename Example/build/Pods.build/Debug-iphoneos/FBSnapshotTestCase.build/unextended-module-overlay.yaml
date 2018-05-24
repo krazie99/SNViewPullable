@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': '/Users/krazie99/Documents/Sean/SNViewPullable/Example/build/Debug-iphoneos/FBSnapshotTestCase/FBSnapshotTestCase.framework/Modules'
+    'contents': [{
+      'type': 'file',
+      'name': 'module.modulemap',
+      'external-contents': '/Users/krazie99/Documents/Sean/SNViewPullable/Example/build/Pods.build/Debug-iphoneos/FBSnapshotTestCase.build/unextended-module.modulemap',
+    }]
+  }]
+}
