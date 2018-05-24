@@ -69,17 +69,21 @@ public extension SNViewPullable where Self: UIViewController  {
         case .began:
             self.pullableOriginPoint = translation
             if #available(iOS 11.0, *) {
-                let currentSafeAreaInsets:UIEdgeInsets = self.view.safeAreaInsets
-                if UIDevice.current.orientation.isLandscape {
-                    self.pullableOriginSafeAreaInsets = UIEdgeInsets.zero
-                } else {
-                    self.pullableOriginSafeAreaInsets = UIEdgeInsetsMake(currentSafeAreaInsets.top, 0, currentSafeAreaInsets.bottom, 0)
+                if UIDevice.current.orientation.isPortrait {
+                    self.pullableOriginSafeAreaInsets = UIEdgeInsetsMake(
+                        self.additionalSafeAreaInsets.top + self.view.safeAreaInsets.top,
+                        self.additionalSafeAreaInsets.left,
+                        self.additionalSafeAreaInsets.bottom,
+                        self.additionalSafeAreaInsets.right
+                    )
                 }
             }
             self.viewPullingBegin()
         case .changed:
             if #available(iOS 11.0, *) {
-                self.additionalSafeAreaInsets = pullableOriginSafeAreaInsets
+                if UIDevice.current.orientation.isPortrait {
+                    self.additionalSafeAreaInsets = self.pullableOriginSafeAreaInsets
+                }
             }
             
             pulledDistance = translation.y - pullableOriginPoint.y
@@ -93,7 +97,14 @@ public extension SNViewPullable where Self: UIViewController  {
             pulledDistance = translation.y - pullableOriginPoint.y
             if pulledDistance < pullableMaxDistance {
                 if #available(iOS 11.0, *) {
-                    self.additionalSafeAreaInsets = UIEdgeInsets.zero
+                    if UIDevice.current.orientation.isPortrait {
+                        self.additionalSafeAreaInsets = UIEdgeInsetsMake(
+                            self.additionalSafeAreaInsets.top - self.view.safeAreaInsets.top,
+                            self.additionalSafeAreaInsets.left,
+                            self.additionalSafeAreaInsets.bottom,
+                            self.additionalSafeAreaInsets.right
+                        )
+                    }
                 }
                 targetFrame.origin.y = 0
                 UIView.animate(withDuration: viewAnimationDuration) {
